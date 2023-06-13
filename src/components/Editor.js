@@ -1,12 +1,14 @@
 import React from 'react'
 import CodeEditor from './CodeEditor'
+import Header from './Header'
 
 const Editor = () => {
   return (
     <div>
-      <CodeEditor/>
-      <CodeEditor/>
-      <CodeEditor/>
+      <Header/>
+      <CodeEditor language="HTML"/>
+      <CodeEditor language="CSS"/>
+      <CodeEditor language="Javascript"/>
 
 
     </div>
