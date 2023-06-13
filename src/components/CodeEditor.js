@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext,useState } from 'react'
 import {Box,styled} from '@mui/material';
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import {Controlled as ControlledEditor} from 'react-codemirror2'
@@ -7,7 +7,6 @@ import 'codemirror/theme/material.css';
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/xml/xml'
 import 'codemirror/mode/css/css'
-
 const HeadingBox=styled(Box)`
             background:#1d1e22;
             display:flex;
@@ -20,16 +19,29 @@ background: #060606;
 color: #AAAEBC;
 font-weight: 700;
 `;
+const Container=styled(Box)`
+        display:flex;
+        flex-direction:column;
+        flex-grow:1;
+        flex-basis:0;
+        padding:0 8px;
+        `
 
-const CodeEditor = ({language}) => {
+const CodeEditor = ({language,icon,color,value,onChange}) => {
+  const [open,setOpen]=useState(true)
+
+  const handleChange=(editor,data,value)=>{
+    onChange(value)
+
+  }
   return (
-    <Box>
+  <Container  style={open ? null : {flexGrow:0}}>
         <Header>
             <HeadingBox>
             <Box 
                         component="span"
                         style={{
-                            background: "red",
+                            background: color,
                             borderRadius: 5,
                             marginRight: 5,
                             height: 20,
@@ -40,14 +52,19 @@ const CodeEditor = ({language}) => {
                             paddingBottom: 2
                         }}
                     >                      
-         /</Box>
+         {icon}</Box>
                     {language}
             </HeadingBox>
-            <CloseFullscreenIcon/>
+            <CloseFullscreenIcon
+            fontSize='small'
+            style={{alignSelf:"center"}}
+            onClick={()=>setOpen(prev=>!prev)}/>
 
         </Header>
         <ControlledEditor
         className='cotrolled-editor'
+        value={value}
+        onBeforeChange={handleChange}
         options={{
           theme:'material',
           mode:'xml',
@@ -60,8 +77,7 @@ const CodeEditor = ({language}) => {
 
         </Box>
 
-    </Box>
-    
+   </Container>
   )
 }
 

@@ -1,17 +1,17 @@
 import { createContext, useState } from "react";
 
-const EditorContext=createContext();
+export const EditorContext=createContext();
 
 const EditorContextProvider=({children})=>{
         const [html,setHtml]=useState('')
-    const [css,setCSS]=useState('')
+    const [css,setCss]=useState('')
     const [js,setJs]=useState('')
     return(
         <EditorContext.Provider value={{
             html,
             setHtml,
             css,
-            setCSS,
+            setCss,
             js,
             setJs
         }}>
