@@ -21,7 +21,7 @@ color: #AAAEBC;
 font-weight: 700;
 `;
 
-const CodeEditor = () => {
+const CodeEditor = ({language}) => {
   return (
     <Box>
         <Header>
@@ -41,13 +41,20 @@ const CodeEditor = () => {
                         }}
                     >                      
          /</Box>
-                    HTML
+                    {language}
             </HeadingBox>
             <CloseFullscreenIcon/>
 
         </Header>
         <ControlledEditor
         className='cotrolled-editor'
+        options={{
+          theme:'material',
+          mode:'xml',
+          lineNumbers:true
+
+
+        }}
             />
         <Box>
 
