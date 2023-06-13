@@ -1,10 +1,15 @@
+import React from 'react'
+import Header from './Header'
+import Editor from './Editor'
 
-function App() {
+const App = () => {
   return (
-    <div>
-      hello world
-    </div>
-  );
+    <>
+    <Header/>
+    <Editor/>
+    
+    </>
+  )
 }
 
-export default App;
+export default App
